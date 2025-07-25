@@ -1,11 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   CheckboxField,
   InputField,
   SelectField,
 } from "@/components/FormComponents";
+import ImageUpload from "@/components/ImageUpload";
 
 /**
  * GenerateRecipeForm Component
@@ -19,6 +21,8 @@ import {
  * @param {Function} setRecipeImageUrl - Updates recipe image URL
  */
 function GenerateRecipeForm({ setRecipe, setShowRecipe, setRecipeImageUrl }) {
+  const [analyzedIngredients, setAnalyzedIngredients] = useState([]);
+  
   const { register, handleSubmit } = useForm({
     // Default form values
     defaultValues: {
@@ -34,13 +38,19 @@ function GenerateRecipeForm({ setRecipe, setShowRecipe, setRecipeImageUrl }) {
    * Generates recipe and corresponding image using API
    */
   const onSubmit = async (data) => {
+    // Add analyzed ingredients to the request data
+    const requestData = {
+      ...data,
+      availableIngredients: analyzedIngredients,
+    };
+
     // Generate recipe
     const res = await fetch("/api/generate-recipe", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(requestData),
     });
 
     const recipe = await res.json();
@@ -72,8 +82,13 @@ function GenerateRecipeForm({ setRecipe, setShowRecipe, setRecipeImageUrl }) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full max-w-xl p-6 bg-white rounded-lg shadow-xl"
+      className="w-full max-w-xl p-6 bg-white rounded-lg shadow-xl space-y-4"
     >
+      <ImageUpload
+        onIngredientsAnalyzed={setAnalyzedIngredients}
+        analyzedIngredients={analyzedIngredients}
+      />
+
       <InputField
         label="Describe about dish:"
         name="userPrompt"
