@@ -69,12 +69,12 @@ Here are some screenshots of the project in action:
    git clone https://github.com/Ayushjhawar8/flavor-ai.git
    ```
 
-2. Create environment file with your API keys:
+2. Add Your Groq and Gemini Api key in `.env.sample` file and change file name to `.env.local`:
    ```bash
-   # Create .env.local file with your API keys
-   GROQ_API_KEY=your_groq_api_key_here
+   GROQ_API_KEY=your_api_key_here
    GOOGLE_GENERATIVE_AI_API_KEY=your_google_gemini_api_key_here
    ```
+
 
 3. Install dependencies:
    ```bash
