@@ -23,19 +23,20 @@ import ImageUpload from "@/components/ImageUpload";
 function GenerateRecipeForm({ setRecipe, setShowRecipe, setRecipeImageUrl, onResetRef }) {
   const [analyzedIngredients, setAnalyzedIngredients] = useState([]);
   
-  const { register, handleSubmit } = useForm({
-    // Default form values
-    defaultValues: {
-        userPrompt: "",
-      dishType: "Snack",
-      cuisine: "Indian",
-      dietaryRestrictions: [],
-      spiceLevel: "Spicy",
-    },
-  });
-  if (onResetRef) {
-    onResetRef.current = reset;
-  }
+  const { register, handleSubmit, reset, watch } = useForm({
+  defaultValues: {
+    userPrompt: "",
+    dishType: "Snack",
+    cuisine: "Indian",
+    dietaryRestrictions: [],
+    spiceLevel: "Spicy",
+  },
+});
+
+if (onResetRef) {
+  onResetRef.current = reset;
+}
+
 
   /**
    * Form submission handler
