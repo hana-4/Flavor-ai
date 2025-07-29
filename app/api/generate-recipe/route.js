@@ -45,6 +45,8 @@ ${body.dietaryRestrictions && body.dietaryRestrictions.length > 0 ? `Strictly av
 ${ingredientsSection}
 User preferences: ${body.userPrompt}
 
+Create an amazing recipe that would be perfect for this request. Use whatever ingredients work best - if I mentioned having certain ingredients available, feel free to incorporate them if they fit well, but don't limit yourself to only those ingredients. Focus on making the best possible dish.
+
 Return the recipe in this JSON format:
 {
   "name": "Recipe Name (2-3 words)",
