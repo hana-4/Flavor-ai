@@ -87,7 +87,8 @@ if (onResetRef) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full max-w-xl p-6 bg-white rounded-lg shadow-xl space-y-4"
+className="w-full max-w-xl p-6 rounded-lg shadow-xl bg-white dark:bg-base-200 space-y-4"
+
     >
       <ImageUpload
         onIngredientsAnalyzed={setAnalyzedIngredients}
